@@ -2,7 +2,8 @@ const isAuthenController = require('./controllers/isAuthenController')
 const UserController = require('./controllers/UserController')
 const UserAuthenController = require('./controllers/UserAuthenController')
 const BlogController = require('./controllers/BlogController')
-const UploadController = require('./controllers/UploadController')
+const UploadController = require('./controllers/UploadController')
+
 const TaskController = require('./controllers/TaskController')
 const fileUploadMiddleware = require('./middleware/fileUpload') // Import Middleware
 
@@ -32,7 +33,7 @@ module.exports = (app) => {
 
   // get all blog
   app.get('/blogs', BlogController.index)
-  
+
   // Route สำหรับ Upload โดยเฉพาะ
   // logic: เรียก middleware ก่อน -> ถ้าผ่าน -> เรียก controller
   app.post('/upload', fileUploadMiddleware, UploadController.upload)
@@ -41,9 +42,9 @@ module.exports = (app) => {
   app.post('/upload/delete', UploadController.deleteFile)
 
   // Task routes
-  app.post('/task', TaskController.create)
-  app.put('/task/:taskId', TaskController.put)
-  app.delete('/task/:taskId', TaskController.remove)
-  app.get('/task/:taskId', TaskController.show)
-  app.get('/tasks', TaskController.index)
+  app.get('/tasks', isAuthenController, TaskController.index)
+  app.post('/task', isAuthenController, TaskController.create)
+  app.put('/task/:taskId', isAuthenController, TaskController.put)
+  app.delete('/task/:taskId', isAuthenController, TaskController.remove)
+  app.get('/task/:taskId', isAuthenController, TaskController.show)
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Get all users</h2>
-    <p><button v-on:click="logout2()">Logout</button></p>
+<p><button v-on:click="logout()">Logout</button></p>
     <p><button v-on:click="navigateTo('/user/create')">สร้างผู้ใช้</button></p>
     <h4>จำนวนผู้ใช้งาน {{ users.length }}</h4>
     <div v-for="user in users" v-bind:key="user.id">

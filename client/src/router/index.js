@@ -10,6 +10,10 @@ import BlogCreate from '../components/Blogs/CreateBlog.vue'
 import BlogEdit from '../components/Blogs/EditBlog.vue'
 import BlogShow from '../components/Blogs/ShowBlog.vue'
 
+import TaskIndex from '../components/Tasks/Index.vue'
+import TaskCreate from '../components/Tasks/CreateTask.vue'
+import TaskEdit from '../components/Tasks/EditTask.vue'
+import TaskShow from '../components/Tasks/ShowTask.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,6 +67,26 @@ const router = createRouter({
       path: '/blog/:blogId',
       name: 'blog',
       component: BlogShow
+    },
+    {
+      path: '/tasks',
+      name: 'tasks',
+      component: TaskIndex
+    },
+    {
+      path: '/task/create',
+      name: 'tasks-create',
+      component: TaskCreate
+    },
+    {
+      path: '/task/edit/:taskId',
+      name: 'task-edit',
+      component: TaskEdit
+    },
+    {
+      path: '/task/:taskId',
+      name: 'task',
+      component: TaskShow
     },
   ]
 })
